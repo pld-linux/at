@@ -73,7 +73,6 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %build
 aclocal
 autoconf
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-atspool=/var/spool/at/spool \
 	--with-jobdir=/var/spool/at \
