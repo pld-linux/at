@@ -109,7 +109,7 @@ At та batch читають команди з╕ стандартного вводу або зазначеного
 
 %build
 cp -f %{_datadir}/automake/config.* .
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	--with-atspool=/var/spool/at/spool \
