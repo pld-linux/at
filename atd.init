@@ -26,7 +26,7 @@ case "$1" in
 		msg_starting at
 		daemon atd
 	else
-		msg_Already_Running atd
+		msg_already_running atd
 		exit 1
 	fi
         touch /var/lock/subsys/atd
@@ -44,7 +44,7 @@ case "$1" in
 	status atd
 	;;
   *)
-	msg_Usage "$0 {start|stop|restart|reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|status}"
 	exit 1
 esac
 
