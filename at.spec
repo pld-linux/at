@@ -31,6 +31,7 @@ Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
 Requires:	/usr/lib/sendmail
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
@@ -73,6 +74,8 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %patch8 -p1
 
 %build
+ln -sf /usr/share/automake/config.sub config.sub
+aclocal
 autoconf
 %configure \
 	--with-atspool=/var/spool/at/spool \
