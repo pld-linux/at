@@ -5,7 +5,7 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	6
+Release:	7
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -127,6 +127,10 @@ fi
 %attr(600,daemon,daemon) %ghost /var/spool/at/.SEQ
 
 %changelog
+* Wed May  5 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [3.1.8-7]
+- recompiled on new rpm.
+
 * Thu Mar 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [3.1.7-6]
 - added at.patch adopted from latest Debian source which fix man pages,
