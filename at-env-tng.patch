@@ -1,0 +1,48 @@
+--- at-3.1.8/at.c.env	Fri Jul 20 01:37:01 2001
++++ at-3.1.8/at.c	Fri Jul 20 01:43:58 2001
+@@ -357,24 +357,27 @@
+      */
+     for (atenv = environ; *atenv != NULL; atenv++) {
+ 	int export = 1;
+-	char *eqp;
++	char *pch;
++       char * eqp = *atenv;
++       char * valp = *atenv;
+ 
+-	eqp = strchr(*atenv, '=');
+-	if (ap == NULL)
+-	    eqp = *atenv;
+-	else {
++	if ((pch = strchr(*atenv, '=')) != 0) {
+ 	    unsigned int i;
++
++            eqp = pch;
++            valp = pch + 1;
+ 	    for (i = 0; i < sizeof(no_export) / sizeof(no_export[0]); i++) {
+ 		export = export
+ 		    && (strncmp(*atenv, no_export[i],
+ 				(size_t) (eqp - *atenv)) != 0);
+ 	    }
+-	    eqp++;
+-	}
++	} else {
++            continue; /* no '=', so bail on this one */
++        }
+ 
+ 	if (export) {
+-	    fwrite(*atenv, sizeof(char), eqp - *atenv, fp);
+-	    for (ap = eqp; *ap != '\0'; ap++) {
++	    fwrite(*atenv, sizeof(char), valp - *atenv, fp);
++	    for (ap = valp; *ap != '\0'; ap++) {
+ 		if (*ap == '\n')
+ 		    fprintf(fp, "\"\n\"");
+ 		else {
+@@ -405,7 +408,7 @@
+ 		}
+ 	    }
+ 	    fputs("; export ", fp);
+-	    fwrite(*atenv, sizeof(char), eqp - *atenv - 1, fp);
++	    fwrite(*atenv, sizeof(char), eqp - *atenv, fp);
+ 	    fputc('\n', fp);
+ 
+ 	}
