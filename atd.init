@@ -1,29 +1,33 @@
 #!/bin/sh
 #
-#	/etc/rc.d/init.d/atd
+# atd		Runs commands scheduled by the at command
 #
-# Starts the at daemon
+# chkconfig:	345 40 60
 #
-# chkconfig: 345 40 60
-# description: Runs commands scheduled by the at command at the time \
-#    specified when at was run, and runs batch commands when the load \
-#    average is low enough.
-# processname: atd
+# description:	Runs commands scheduled by the at command at the time \
+#		specified when at was run, and runs batch commands when \
+#		the load average is low enough.
+#
+# processname:	atd
 
-# Source function library.
+
+# Source function library
 . /etc/rc.d/init.d/functions
 
-# Try get sysconfig ...
-if [ -f /etc/sysconfig/at ]; then
-    . /etc/sysconfig/at
-fi    
+# Get service config
+[ -f /etc/sysconfig/atd ] && . /etc/sysconfig/atd
 
-#	See how we were called.
-#
+
+# See how we were called.
 case "$1" in
   start)
-	show Starting at daemon
-        daemon atd
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/atd ]; then
+		show Starting at daemon
+		daemon atd
+	else
+		echo "atd already is running"
+	fi
         touch /var/lock/subsys/atd
 	;;
   stop)
