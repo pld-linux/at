@@ -1,0 +1,11 @@
+--- at-3.1.7/atd.c.tyop	Thu Feb 10 11:14:31 2000
++++ at-3.1.7/atd.c	Thu Feb 10 11:14:43 2000
+@@ -247,7 +247,7 @@
+ 	     "aborting", jobno, filename);
+ 
+     if (buf.st_nlink > 2) {
+-	perr("Someboy is trying to run a linked script for job %8lu (%.500s)",
++	perr("Somebody is trying to run a linked script for job %8lu (%.500s)",
+ 	     filename);
+     }
+     if ((fflags = fcntl(fd_in, F_GETFD)) < 0)
