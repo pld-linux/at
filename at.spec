@@ -14,7 +14,6 @@ Patch1:      at-3.1.7-paths.patch
 Patch2:      at-makefile.patch
 Buildroot:   /tmp/%{name}-%{version}-root
 Prereq:      fileutils chkconfig
-Conflicts:   crontabs <= 1.5
 
 %description
 at and batch read commands from standard input or a specified file
