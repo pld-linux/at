@@ -72,19 +72,19 @@ mv $RPM_BUILD_ROOT/usr/doc/at $RPM_BUILD_ROOT/usr/doc/%{name}-%{version}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/atd
 
-rm -f $RPM_BUILD_ROOT/usr/man/man1/{atq,atrm,batch}.1
-rm -f $RPM_BUILD_ROOT/usr/man/man5/at_deny.5
+rm -f $RPM_BUILD_ROOT/usr/share/man/man1/{atq,atrm,batch}.1
+rm -f $RPM_BUILD_ROOT/usr/share/man/man5/at_deny.5
 
-echo .so at.1 > $RPM_BUILD_ROOT/usr/man/man1/atq.1
-echo .so at.1 > $RPM_BUILD_ROOT/usr/man/man1/atrm.1
-echo .so at.1 > $RPM_BUILD_ROOT/usr/man/man1/batch.1
+echo .so at.1 > $RPM_BUILD_ROOT/usr/share/man/man1/atq.1
+echo .so at.1 > $RPM_BUILD_ROOT/usr/share/man/man1/atrm.1
+echo .so at.1 > $RPM_BUILD_ROOT/usr/share/man/man1/batch.1
 
-echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/man/man5/at_deny.5
-echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/man/man5/at_acces.5
+echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/share/man/man5/at_deny.5
+echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/share/man/man5/at_acces.5
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man[158]/* \
+gzip -9fn $RPM_BUILD_ROOT/usr/share/man/man[158]/* \
 	ChangeLog README
 
 %clean
@@ -120,15 +120,16 @@ fi
 %attr(755,root,root) /usr/bin/atrm
 %attr(755,root,root) /usr/bin/batch
 
-/usr/man/man[158]/*
+/usr/share/man/man[158]/*
 
 %attr(700,daemon,daemon) %dir /var/spool/at
 %attr(700,daemon,daemon) %dir /var/spool/at/spool
 %attr(600,daemon,daemon) %ghost /var/spool/at/.SEQ
 
 %changelog
-* Wed May  5 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+* Sun May  9 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [3.1.8-7]
+- now package is FHS 2.0 compiliat,
 - recompiled on new rpm.
 
 * Thu Mar 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
