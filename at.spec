@@ -4,7 +4,7 @@ Summary(fr): Gestionnaire de taches at.
 Summary(tr): Ýþ düzenleyici
 Name:        at
 Version:     3.1.7
-Release:     5
+Release:     6
 Copyright:   GPL
 Group:       Daemons
 Source0:     ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/at-3.1.7.tar.gz
@@ -91,6 +91,10 @@ fi
 %attr(600, daemon, daemon) %ghost /var/spool/at/.SEQ
 
 %changelog
+* Sat Nov 21 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [3.1.7-6]
+- removed "Conflicts: crontabs <= 1.5".
+
 * Thu Sep  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [3.1.7-5]
 - added -q %setup parameter,
