@@ -9,7 +9,7 @@ Summary(tr):	Ч dЭzenleyici
 Summary(uk):	Утил╕ти для в╕дкладеного запуску завдань
 Name:		at
 Version:	3.1.8
-Release:	27
+Release:	28
 License:	GPL
 Group:		Daemons
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
@@ -128,7 +128,7 @@ install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 install at.deny $RPM_BUILD_ROOT%{_sysconfdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/atd
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/at
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/atd
 
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{atq,atrm,batch}.1
 rm -f $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
