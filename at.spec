@@ -20,6 +20,7 @@ Patch3:		at.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Requires:	mailx
+Requires:	rc-scripts
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
