@@ -72,13 +72,13 @@ LDFLAGS="-s"; export LDFLAGS
 	--with-etcdir=%{_sysconfdir} \
 	--with-daemon_username=root \
 	--with-daemon_groupname=root
-make 
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_mandir}/pl/man{1,5,8}}
 
-make IROOT=$RPM_BUILD_ROOT install
+%{__make} IROOT=$RPM_BUILD_ROOT install
 
 install at.deny $RPM_BUILD_ROOT%{_sysconfdir}
 
