@@ -22,10 +22,11 @@ Patch2:		at-man.patch
 Patch3:		at.patch
 Patch4:		at-typo.patch
 Patch5:		at-sigchld.patch
+BuildRequires:	autoconf
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Requires:	mailx
-Requires:	rc-scripts
+Requires:	rc-scripts >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
