@@ -5,7 +5,7 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	17
+Release:	18
 License:	GPL
 Group:		Daemons
 Group(de):	Server
@@ -25,6 +25,8 @@ Patch7:		%{name}-debian.patch
 Patch8:		%{name}-buflen.patch
 Patch9:		%{name}-configure-no_cron.patch
 Patch10:	%{name}-pld_noenglish_man.patch
+Patch11:	%{name}-heapcorruption.patch
+Patch12:	%{name}-open.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
@@ -74,6 +76,8 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %patch8 -p1
 %patch9 -p0
 %patch10 -p1
+%patch11 -p1
+%patch12 -p1
 
 %build
 ln -sf /usr/share/automake/config.sub config.sub
