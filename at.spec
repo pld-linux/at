@@ -1,6 +1,6 @@
 Summary:	at job spooler
 Summary(de):	at-Job-Spooler
-Summary(es):	Spooler de jobs at
+Summary(es):	Gestionario de tareas
 Summary(fr):	Gestionnaire de taches at
 Summary(pl):	Demon kontroli zadañ
 Summary(pt_BR):	Spooler de jobs at
@@ -57,7 +57,7 @@ genannten Datei zu einem späteren Zeitpunkt unter Verwendung von
 /bin/sh.
 
 %description -l es
-at y batch leen comandos de la entrada padrón o de un archivo
+At y batch leen comandos de la entrada padrón o de un archivo
 especificado que son ejecutados más tarde, usando /bin/sh.
 
 %description -l fr
