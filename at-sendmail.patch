@@ -1,0 +1,29 @@
+diff -Naur at-3.1.8/configure.in at-3.1.8-p/configure.in
+--- at-3.1.8/configure.in	Sun Sep 28 19:30:18 1997
++++ at-3.1.8-p/configure.in	Thu Jun 29 16:28:15 2000
+@@ -85,23 +85,8 @@
+ 
+ dnl Checking for programs
+ 
+-AC_PATH_PROG(MAILX, mailx)
+-if test "$ac_cv_path_MAILX" != "" ; then
+-AC_DEFINE_UNQUOTED(MAILX,"$ac_cv_path_MAILX")
+-MAIL_CMD="$ac_cv_path_MAILX"
+-fi
+-
+-AC_PATH_PROG(MAILC, mail)
+-if test "$ac_cv_path_MAILC" != "" ; then
+-AC_DEFINE_UNQUOTED(MAILC,"$ac_cv_path_MAILC")
+-MAIL_CMD="$ac_cv_path_MAILC"
+-fi
+-
+-AC_PATH_PROG(SENDMAIL, sendmail, , $PATH:/usr/lib:/usr/sbin )
+-if test "$ac_cv_path_SENDMAIL" != "" ; then
+-AC_DEFINE_UNQUOTED(SENDMAIL,"$ac_cv_path_SENDMAIL")
+-MAIL_CMD="$ac_cv_path_SENDMAIL"
+-fi
++AC_DEFINE_UNQUOTED(SENDMAIL,"/usr/lib/sendmail")
++MAIL_CMD="/usr/lib/sendmail"
+ 
+ AC_SUBST(MAIL_CMD)
+ 
