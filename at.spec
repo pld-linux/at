@@ -45,8 +45,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	/etc/at
 
 %description
-At and batch read commands from standard input or from a specified
-file. At allows you to specify that a command will be run at a
+at and batch read commands from standard input or from a specified
+file. at allows you to specify that a command will be run at a
 particular time (now or a specified time in the future). Batch will
 execute commands when the system load levels drop to a particular
 level. Both commands use /bin/sh to run the commands.
@@ -65,7 +65,7 @@ at et batch lisent, sur l'entrИe standard ou dans un fichier, des
 commandes qui doivent Йtre exИcutИes plus tard en utilisant /bin/sh.
 
 %description -l pl
-At i batch czytaj╠ komendy ze standardowego wej╤cia lub specyficznego
+at i batch czytaj╠ komendy ze standardowego wej╤cia lub specyficznego
 pliku, ktСre s╠ nastЙpnie wykonywane o okre╤lonej godzinie, przy
 pomocy /bin/sh.
 
@@ -74,9 +74,9 @@ at e batch lЙem comandos da entrada padrЦo ou de um arquivo
 especificado que sЦo executados mais tarde, usando /bin/sh.
 
 %description -l ru
-At и batch читают команды со стандартного ввода или указанного файла.
-At позволяет запустить команду в определенное время (сейчас или в
-будущем). Batch исполняет команды когда загрузка системы падает до
+at и batch читают команды со стандартного ввода или указанного файла.
+at позволяет запустить команду в определенное время (сейчас или в
+будущем). batch исполняет команды когда загрузка системы падает до
 определенного значения. Обе программы используют /bin/sh для запуска
 других программ.
 
@@ -85,9 +85,9 @@ at ve batch /bin/sh kabuПunu kullanarak, belli bir saatte ГalЩЧtЩrmak
 Эzere standart giriЧden ya da bir dosyadan komut okur.
 
 %description -l uk
-At та batch читають команди з╕ стандартного вводу або зазначеного
+at та batch читають команди з╕ стандартного вводу або зазначеного
 файлу. At дозволя╓ запустити команду в зазначений час (зараз або у
-майбутньому). Batch викону╓ команди коли завантаження системи пада╓ до
+майбутньому). batch викону╓ команди коли завантаження системи пада╓ до
 визначеного значення. Обидв╕ програми використовують /bin/sh для
 запуску ╕нших програм.
 
