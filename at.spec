@@ -80,7 +80,7 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %build
 ln -sf /usr/share/automake/config.sub config.sub
 aclocal
-autoconf
+%{__autoconf}
 %configure \
 	--with-atspool=/var/spool/at/spool \
 	--with-jobdir=/var/spool/at \
