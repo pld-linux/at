@@ -5,7 +5,7 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	15
+Release:	16
 License:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -22,11 +22,11 @@ Patch2:		at-man.patch
 Patch3:		at.patch
 Patch4:		at-typo.patch
 Patch5:		at-sigchld.patch
-BuildRequires:	autoconf
+Patch6:		at-sendmail.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
-Requires:	mailx
 Requires:	rc-scripts >= 0.2.0
+Requires:	/usr/lib/sendmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
@@ -61,6 +61,7 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %patch3 -p1 
 %patch4 -p1 
 %patch5 -p1 
+%patch6 -p1
 
 %build
 aclocal
