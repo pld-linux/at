@@ -129,7 +129,7 @@ fi
 %changelog
 * Sun May  9 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [3.1.8-7]
-- now package is FHS 2.0 compiliat,
+- now package is FHS 2.0 compliat,
 - recompiled on new rpm.
 
 * Thu Mar 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
