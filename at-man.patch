@@ -6,7 +6,7 @@ diff -Nur at-3.1.8/at.1.in at-3.1.8.pld/at.1.in
  .PP
  The exact definition of the time specification can be found in
 -.IR @prefix@/doc/at/timespec .
-+.IR /usr/doc/at-3.1.8/timespec .
++.IR /usr/share/doc/at-3.1.8/timespec .
  .PP
  For both
  .BR at " and " batch ,
