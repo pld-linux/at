@@ -52,7 +52,7 @@ standart giriþden ya da bir dosyadan komut okur.
 %build
 autoconf
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
+./configure %{_target} \
 	--with-atspool=/var/spool/at/spool \
 	--with-jobdir=/var/spool/at \
 	--with-etcdir=/etc/at
