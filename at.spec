@@ -5,7 +5,7 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	16
+Release:	17
 License:	GPL
 Group:		Daemons
 Group(de):	Server
@@ -13,10 +13,7 @@ Group(pl):	Serwery
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
 Source1:	%{name}d.init
 Source2:	%{name}.sysconfig
-Source3:	%{name}.1.pl
-Source4:	%{name}_allow.5.pl
-Source5:	%{name}d.8.pl
-Source6:	%{name}run.8.pl
+Source3:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-lockfile.patch
 Patch1:		%{name}-install.patch
 Patch2:		%{name}-man.patch
@@ -26,12 +23,15 @@ Patch5:		%{name}-sigchld.patch
 Patch6:		%{name}-sendmail.patch
 Patch7:		%{name}-debian.patch
 Patch8:		%{name}-buflen.patch
+Patch9:		%{name}-configure-no_cron.patch
+Patch10:	%{name}-pld_noenglish_man.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
 Requires:	/usr/lib/sendmail
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	flex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
@@ -62,7 +62,7 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 üzere standart giriþden ya da bir dosyadan komut okur.
 
 %prep
-%setup -q
+%setup -q -a3
 %patch0 -p1 
 %patch1 -p1 
 %patch2 -p1 
@@ -72,6 +72,8 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p0
+%patch10 -p1
 
 %build
 ln -sf /usr/share/automake/config.sub config.sub
@@ -87,7 +89,7 @@ autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_mandir}/pl/man{1,5,8}}
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
 %{__make} IROOT=$RPM_BUILD_ROOT install
 
@@ -104,17 +106,14 @@ echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atrm.1
 echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/batch.1
 
 echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
-echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_acces.5
+echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_access.5
 
-install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man1/at.1
-echo ".so at.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/atq.1
-echo ".so at.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/atrm.1
-echo ".so at.1" > $RPM_BUILD_ROOT%{_mandir}/pl/man1/batch.1
-install %{SOURCE4} $RPM_BUILD_ROOT%{_mandir}/pl/man5/at_allow.5
-echo ".so at_allow.5" > $RPM_BUILD_ROOT%{_mandir}/pl/man5/at.access.5
-echo ".so at_allow.5" > $RPM_BUILD_ROOT%{_mandir}/pl/man5/at.deny.5
-install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man8/atd.8
-install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man8/atrun.8
+for a in es fi fr hu id it ja ko pl; do
+	install -d $RPM_BUILD_ROOT%{_mandir}/{$a,$a/man{1,5,8}}
+	for b in $a/man[158]/*; do
+		install $b $RPM_BUILD_ROOT%{_mandir}/$b
+	done
+done
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
@@ -157,6 +156,14 @@ fi
 %attr(755,root,root) %{_bindir}/batch
 
 %{_mandir}/man*/*
+%lang(es) %{_mandir}/es/man*/*
+%lang(fi) %{_mandir}/fi/man*/*
+%lang(fr) %{_mandir}/fr/man*/*
+%lang(hu) %{_mandir}/hu/man*/*
+%lang(id) %{_mandir}/id/man*/*
+%lang(it) %{_mandir}/it/man*/*
+%lang(ja) %{_mandir}/ja/man*/*
+%lang(ko) %{_mandir}/ko/man*/*
 %lang(pl) %{_mandir}/pl/man*/*
 
 %attr(750,root,root) %dir /var/spool/at
