@@ -13,7 +13,7 @@ Group(pl):	Serwery
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
 Source1:	%{name}d.init
 Source2:	%{name}.sysconfig
-Source3:	%{name}-non-english-man-pages.tar.bz2
+Source3:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-lockfile.patch
 Patch1:		%{name}-install.patch
 Patch2:		%{name}-man.patch
