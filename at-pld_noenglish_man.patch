@@ -1,0 +1,749 @@
+diff -ur at.man/es/man1/at.1 at.man.pld/es/man1/at.1
+--- at.man/es/man1/at.1	Mon Apr 12 17:57:05 1999
++++ at.man.pld/es/man1/at.1	Thu Oct 18 02:16:32 2001
+@@ -122,7 +122,7 @@
+ .B at 1am tomorrow.
+ .PP
+ La definición exacta de la especificación de hora se puede encontrar en
+-.IR /usr/doc/at/timespec .
++.IR /usr/share/doc/at-3.1.8/timespec .
+ .PP
+ Para ambos 
+ .BR at " y " batch ,
+@@ -155,19 +155,19 @@
+ .PP
+ El superusuario siempre puede utilizar estos comandos.
+ Para otros usuarios, los permisos para utilizarlos están determinados en los ficheros 
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ y
+-.IR /etc/at.deny .
++.IR /etc/at/at.deny .
+ .PP
+ Si el fichero
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ existe, sólo los usuarios cuyos nombres están mencionados aquí tienen permiso para utilizar 
+ .BR at .
+ .PP
+ Si
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ no existe, se chequea 
+-.I /etc/at.deny 
++.I /etc/at/at.deny 
+ y entonces todos los usuarios cuyos nombres no estén mencionados allí tienen permiso 
+ para utilizar 
+ .BR at .
+@@ -175,7 +175,7 @@
+ Si ninguno de los ficheros existe, sólo el superusuario puede utilizar at.
+ .PP
+ Un 
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ vacío significa que todo usuario puede utilizar estos comandos, esta es la 
+ configuración por defecto.
+ .SH OPCIONES
+@@ -241,17 +241,17 @@
+ \-c
+ manda los comandos listados en la línea de comandos a la salida estándar.
+ .SH FICHEROS
+-.I /var/spool/cron/atjobs
++.I /var/spool/at
+ .br
+-.I /var/spool/cron/atspool
++.I /var/spool/at/spool
+ .br
+ .I /proc/loadavg
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH "VÉASE TAMBIÉN"
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH FALLOS
+diff -ur at.man/es/man5/at_allow.5 at.man.pld/es/man5/at_allow.5
+--- at.man/es/man5/at_allow.5	Mon Apr 12 14:29:32 1999
++++ at.man.pld/es/man5/at_allow.5	Thu Oct 18 02:07:28 2001
+@@ -6,9 +6,9 @@
+ at.acess, at.deny \- determinan quién puede enviar trabajos mediante at o batch
+ .SH DESCRIPCIÓN
+ Los ficheros 
+-.I /etc/at.access
++.I /etc/at/at.access
+ y
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ determinan qué usuarios pueden enviar comandos para su ejecución posterior mediante
+ .B at(1)
+ o
+@@ -21,13 +21,13 @@
+ .BR at .
+ .PP
+ Si el fichero
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ existe, sólo los usuarios cuyos nombres se mencionan tienen permitido el uso de 
+ .BR at .
+ .PP
+ Si 
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ no existe, se chequea
+-.IR /etc/at.deny .
++.IR /etc/at/at.deny .
+ .SH "VÉASE TAMBIÉN"
+ at(1), atrun(1), cron(1), crontab(1), atd(8)
+diff -ur at.man/es/man8/atd.8 at.man.pld/es/man8/atd.8
+--- at.man/es/man8/atd.8	Mon Apr 12 14:30:18 1999
++++ at.man.pld/es/man8/atd.8	Thu Oct 18 02:10:57 2001
+@@ -48,16 +48,16 @@
+ que es un guión shell que ejecuta
+ .BR "atd -s" .
+ .SH FICHEROS
+-.I /var/spool/cron/atjobs
++.I /var/spool/at
+ El directorio para almacenar trabajos; debería tener modo 700 y propietario
+ daemon.
+ .PP
+-.I /var/spool/cron/atspool
++.I /var/spool/at/spool
+ El directorio para almacenar la salida; debería tener modo 700 y propietario
+ daemon.
+ .PP
+-.IR /etc/at.allow ,
+-.IR /etc/at.deny
++.IR /etc/at/at.allow ,
++.IR /etc/at/at.deny
+ determina quién puede usar el sistema
+ .B at.
+ 
+diff -ur at.man/es/man8/atrun.8 at.man.pld/es/man8/atrun.8
+--- at.man/es/man8/atrun.8	Mon Apr 12 14:30:18 1999
++++ at.man.pld/es/man8/atrun.8	Thu Oct 18 02:18:48 2001
+@@ -13,7 +13,7 @@
+ ejecuta trabajos encolados por
+ .BR at (1).
+ Es un guión shell que contiene una llamada  
+-.B ${exec_prefix}/sbin/atd
++.B /usr/sbin/atd
+ con la opción
+ .IR -s ,
+ y se proporciona por compatibilidad con instalaciones antiguas.
+diff -ur at.man/fi/man1/at.1 at.man.pld/fi/man1/at.1
+--- at.man/fi/man1/at.1	Sun Nov 14 02:34:31 1999
++++ at.man.pld/fi/man1/at.1	Thu Oct 18 02:14:30 2001
+@@ -124,7 +124,7 @@
+ .B at 1am tomorrow.
+ .PP
+ Tarkka formaatti aja määrittelyyn on tiedostossa
+-.IR /usr/doc/at-3.1.7/timespec .
++.IR /usr/share/doc/at-3.1.8/timespec .
+ .PP
+ Sekä
+ .BR at " että " batch
+@@ -160,23 +160,23 @@
+ .PP
+ Pääkäyttäjä saa aina käyttää näitä komentoja.
+ Muille käyttäjille oikeudet määritellään tiedostoilla
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ ja
+-.IR /etc/at.deny .
++.IR /etc/at/at.deny .
+ .PP
+ Jos tiedosto
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ on olemassa, vain tässä tiedostossa listatut käyttäjät saavat käyttää
+ .BR at 
+ -komentoa.
+ .PP
+ Jos tätä tiedostoa ei ole,
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ listaa ne käyttäjät, jotka eivät saa käyttää komentoja.
+ Jos kumpaakaan tiedostoa ei ole, vain pääkäyttäjällä on suoritusoikeus.
+ .PP
+ Tyhjä
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ ilmaisee, että kaikilla on suoritusoikeus, mikä on oletusarvo.
+ .SH OPTIOT
+ .TP 8
+@@ -246,9 +246,9 @@
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH "KATSO MYÖS"
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH BUGIT
+diff -ur at.man/fr/man1/at.1 at.man.pld/fr/man1/at.1
+--- at.man/fr/man1/at.1	Mon Sep 25 14:08:39 2000
++++ at.man.pld/fr/man1/at.1	Thu Oct 18 02:30:48 2001
+@@ -154,20 +154,20 @@
+ Le Super-Utilisateur peut toujours employer ces commandes. Pour les
+ autres utilisateurs, les permissions sont déterminées
+ par les fichiers
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ et
+-.IR /etc/at.deny .
++.IR /etc/at/at.deny .
+ .PP
+ Si le fichier
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ existe, seuls les utilisateurs dont les noms sont mentionnés dans
+ ce fichier peuvent utiliser
+ .BR at .
+ .PP
+ Si
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ n'existe pas, \fBat\fP vérifie si
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ existe, et tous les utilisateurs non-mentionnés dans ce fichier ont
+ le droit d'invoquer
+ .BR at .
+@@ -177,7 +177,7 @@
+ .BR at .
+ .PP
+ Un fichier
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ vide signifie que tous les utilisateurs ont le droit d'appeler ces
+ commandes, c'est la configuration par défaut.
+ .SH OPTIONS
+@@ -251,11 +251,11 @@
+ .br
+ .I /proc/loadavg
+ .br
+-.I /etc/utmp
++.I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH "VOIR AUSSI"
+ cron(1), nice(1), sh(1), umask(2), atrun(8)
+ .SH BOGUES
+@@ -267,7 +267,7 @@
+ .IR /proc .
+ .PP
+ Si le fichier
+-.I /etc/utmp
++.I /var/run/utmp
+ n'est pas disponible, ou est endommagé, ou si l'utilisateur n'est pas
+ connecté lorsque 
+ .B at
+diff -ur at.man/hu/man1/at.1 at.man.pld/hu/man1/at.1
+--- at.man/hu/man1/at.1	Tue Jul 11 17:27:40 2000
++++ at.man.pld/hu/man1/at.1	Thu Oct 18 02:14:11 2001
+@@ -123,7 +123,7 @@
+ .B at 1am tomorrow.
+ .PP
+ Az idõ specifikációk pontosabb leírását megtalálod a
+-.I /usr/doc/at-3.1.7/timespec 
++.I /usr/share/doc/at-3.1.8/timespec 
+ fájl-ban.
+ .PP
+ Mind az
+@@ -161,21 +161,21 @@
+ .BR at
+ parancsot.
+ Más felhasználóknak a hozzáférési jogok a
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ és a
+-.IR /etc/at.deny
++.IR /etc/at/at.deny
+ fájl-ban vannak meghatározva.
+ .PP
+ Ha a
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ fájl létezik, csak az abban felsorolt felhasználók használhatják az
+ .BR at
+ parancsot. 
+ .PP
+ Ha a
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ fájl nem létezik, a
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ fájl-t vizsgálja meg az
+ .BR at.
+ Minden felhasználó, aki itt fel van sorolva nem jogosult használni az
+@@ -187,7 +187,7 @@
+ parancs futtatására
+ .PP
+ Egy üres 
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ azt jelenti, hogy minden felhasználó jogosult használni ezeket az utasításokat.
+ Ez az alapértelmezett konfiguráció.
+ .SH OPCIÓK
+@@ -272,9 +272,9 @@
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH LÁSD MÉG
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH HIBÁK
+diff -ur at.man/id/man1/at.1 at.man.pld/id/man1/at.1
+--- at.man/id/man1/at.1	Mon Feb 22 21:22:09 1999
++++ at.man.pld/id/man1/at.1	Thu Oct 18 02:15:38 2001
+@@ -123,7 +123,7 @@
+ .B at 1am tomorrow.
+ .PP
+ Definisi lengkap mengenai spesifikasi waktu dapat ditemukan pada
+-.IR /usr/doc/at-3.1.7/timespec .
++.IR /usr/share/doc/at-3.1.8/timespec .
+ .PP
+ Untuk perintah
+ .BR at " dan " batch ,
+@@ -153,19 +153,19 @@
+ .PP
+ Superuser dapat menggunakan perintah-perintah ini dalam kondisi apapun.
+ Untuk pengguna lain, ijin untuk menggunakannya ditentukan oleh file-file
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ dan
+-.IR /etc/at.deny .
++.IR /etc/at/at.deny .
+ .PP
+ Jika file
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ ditemukan, hanya pengguna yang terdapat di dalamnya diijinkan untuk menggunakan
+ .BR at .
+ .PP
+ Jika
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ tidak ditemukan,
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ akan dicek, setiap pengguna yang tidak terdapat di dalamnya akan diijinkan
+ untuk menggunakan
+ .BR at .
+@@ -173,7 +173,7 @@
+ Jika keduanya tidak ditemukan, hanya superuser yang diijinkan untuk menggunakan
+ .BR at .
+ .PP
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ yang kosong berarti setiap pengguna diijinkan untuk menggunakan perintah
+ tersebut, ini adalah konfigurasi default.
+ .SH PARAMETER
+@@ -254,9 +254,9 @@
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH LIHAT JUGA
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH BUS
+diff -ur at.man/it/man1/at.1 at.man.pld/it/man1/at.1
+--- at.man/it/man1/at.1	Wed Mar 31 14:50:52 1999
++++ at.man.pld/it/man1/at.1	Thu Oct 18 02:30:19 2001
+@@ -124,7 +124,7 @@
+ .PP
+ La definizione esatta delle specifiche di orario possono essere
+ trovate in
+-.IR /usr/doc/at-3.1.7/timespec .
++.IR /usr/share/doc/at-3.1.8/timespec .
+ .PP
+ Per entrambi
+ .BR at " e " batch ", "
+@@ -156,19 +156,19 @@
+ .PP   
+ Il superutente può sempre usare questi comandi.
+ Per gli altri utenti, l'autorizzazione  all'uso è determinata dai file
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ e
+-.IR /etc/at.deny . 
++.IR /etc/at/at.deny . 
+ .PP
+ Se il file
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ esiste, solo gli utenti il cui nome vi è menzionato sono abilitati a usare 
+ .BR at .
+ .PP
+ Se 
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ non esiste,
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ viene controllato, ed ogni utente il cui nome non vi è menzionato è
+ abilitato a usare
+ .BR at .
+@@ -176,7 +176,7 @@
+ Se né l'uno né l'altro esistono, solo il superutente è abilitato a usare at.
+ .PP
+ Un file
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ vuoto significa che ogni utente è autorizzato a usare questi comandi, 
+ questa è la configurazione predefinita.
+ .SH OPZIONI
+@@ -244,17 +244,17 @@
+ \-c
+ mostra i lavori elencati nella linea di comando sullo standart output.
+ .SH FILE
+-.I /var/spool/atjobs
++.I /var/spool/at
+ .br
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ .br
+ .I /proc/loadavg
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH VEDERE ANCHE 
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH BACHI
+@@ -267,7 +267,7 @@
+ .IR /proc .
+ .PP
+ Se il file 
+-.I /etc/utmp
++.I /var/run/utmp
+ non è disponibile o corrotto, o se l'utente non è collegato nel momento in cui
+ .B at
+ viene chiamato, la posta viene spedita allo userid trovato nella variabile d'ambiente
+diff -ur at.man/ja/man1/at.1 at.man.pld/ja/man1/at.1
+--- at.man/ja/man1/at.1	Sun Oct 14 17:15:23 2001
++++ at.man.pld/ja/man1/at.1	Thu Oct 18 02:30:32 2001
+@@ -140,7 +140,7 @@
+ ¤È¤¹¤ë¡£
+ .PP
+ »þ´Ö»ØÄêÊýË¡¤Î¸·Ì©¤ÊÄêµÁ¤Ï
+-.I /usr/doc/at/timespec
++.I /usr/share/doc/at-3.1.8/timespec
+ ¤Ë½ñ¤¤¤Æ¤¢¤ë¡£
+ .PP
+ .BR at " ¤È " batch
+@@ -171,19 +171,19 @@
+ .PP
+ ¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶¡¼¤Ï¡¢¤É¤ó¤Ê¾ì¹ç¤Ç¤âÉ¬¤º¤³¤Î¥³¥Þ¥ó¥É¤ò»È¤¦¤³¤È¤¬¤Ç¤­¤ë¡£
+ Â¾¤Î¥æ¡¼¥¶¡¼¤Î¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó¤Ï
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ ¤È
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ ¤Ç»ØÄê¤¹¤ë¡£
+ .PP
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ ¤¬¤¢¤ì¤Ð¡¢¤½¤³¤Ë½ñ¤«¤ì¤¿¥æ¡¼¥¶¡¼¤Î¤ß¤¬
+ .BR at
+ ¤ò»È¤¨¤ë¡£
+ .PP
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ ¤¬¤Ê¤±¤ì¤Ð
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ ¤ò¥Á¥§¥Ã¥¯¤·¡¢¤½¤³¤Ë½ñ¤«¤ì¤Æ¡Ö¤¤¤Ê¤¤¡×¥æ¡¼¥¶¡¼¤¹¤Ù¤Æ¤¬
+ .B at
+ ¤ò»È¤¨¤ë¡£
+@@ -192,7 +192,7 @@
+ at ¤ò»È¤¦¤³¤È¤¬¤Ç¤­¤ë¡£
+ .PP
+ ¶õ¤Î 
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ ¤¬¤¢¤ë¤È¤­¤Ï¡¢Á´¤Æ¤Î¥æ¡¼¥¶¡¼¤¬¤³¤ì¤é¤Î¥³¥Þ¥ó¥É¤ò»È¤¦¤³¤È¤¬¤Ç¤­¤ë¡£
+ ¤³¤ÎÀßÄê¤¬¥Ç¥Õ¥©¥ë¥È¤Ç¤¢¤ë¡£
+ .SH ¥ª¥×¥·¥ç¥ó
+@@ -258,17 +258,17 @@
+ \-c
+ ¥³¥Þ¥ó¥É¥é¥¤¥ó¤Ç»ØÄê¤·¤¿¥¸¥ç¥Ö¤òÉ¸½à½ÐÎÏ¤ËÉ½¼¨¤¹¤ë¡£
+ .SH ¥Õ¥¡¥¤¥ë
+-.I /var/spool/atjobs
++.I /var/spool/at
+ .br
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ .br
+ .I /proc/loadavg
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH ´ØÏ¢¹àÌÜ
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH ¥Ð¥°
+@@ -281,7 +281,7 @@
+ ·Á¼°¤Î¥Ç¥£¥ì¥¯¥È¥ê¤¬É¬Í×¤Ç¤¢¤ë¡£
+ .PP
+ ¤â¤·
+-.I /etc/utmp
++.I /var/run/utmp
+ ¤¬²õ¤ì¤Æ»È¤¨¤Ê¤«¤Ã¤¿¤ê¡¢
+ .B at
+ ¤¬¥¸¥ç¥Ö¤ò¼Â¹Ô¤¹¤ë¤È¤­¤Ë¥æ¡¼¥¶¡¼¤¬¥í¥°¥¤¥ó¤·¤Æ¤Ê¤«¤Ã¤¿¤ê¤¹¤ë¤È¡¢
+diff -ur at.man/ja/man8/atd.8 at.man.pld/ja/man8/atd.8
+--- at.man/ja/man8/atd.8	Sun Oct 14 17:15:23 2001
++++ at.man.pld/ja/man8/atd.8	Thu Oct 18 02:10:59 2001
+@@ -60,11 +60,11 @@
+ .B /usr/sbin/atrun
+ ¤È¤·¤Æ¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¡£
+ .SH ¥Õ¥¡¥¤¥ë
+-.I /var/spool/atjobs
++.I /var/spool/at
+ ¥¸¥ç¥Ö¤òÊÝÂ¸¤¹¤ë¥Ç¥£¥ì¥¯¥È¥ê¡£¤³¤Î¥Ç¥£¥ì¥¯¥È¥ê¤Ï¥â¡¼¥É¤ò 700¡¢¥ª¡¼¥Ê¡¼¤ò
+ daemon ¤Ë¤¹¤ë¤Ù¤­¤Ç¤¢¤ë¡£ 
+ .PP
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ ½ÐÎÏ¤òÊÝÂ¸¤¹¤ë¥Ç¥£¥ì¥¯¥È¥ê¡£¤³¤Î¥Ç¥£¥ì¥¯¥È¥ê¤Ï¥â¡¼¥É¤ò 700¡¢¥ª¡¼¥Ê¡¼¤ò
+ daemon ¤Ë¤¹¤ë¤Ù¤­¤Ç¤¢¤ë¡£ 
+ .SH ´ØÏ¢¹àÌÜ
+diff -ur at.man/ko/man1/at.1 at.man.pld/ko/man1/at.1
+--- at.man/ko/man1/at.1	Sun Apr 23 14:02:02 2000
++++ at.man.pld/ko/man1/at.1	Thu Oct 18 02:13:22 2001
+@@ -113,7 +113,7 @@
+ °ú °°ÀÌ ÇÏ¸é µÈ´Ù.
+ .PP
+ ½Ã°£ ÁöÁ¤¿¡ ´ëÇÑ Á¤È®ÇÑ Á¤ÀÇ´Â 
+-.IR /usr/doc/packages/at/timespec ¿¡
++.IR /usr/share/doc/at-3.1.8/timespec ¿¡
+ µÇÀÖ´Ù.
+ .PP
+ .BR at "°ú " batch 
+@@ -138,26 +138,26 @@
+ ½©¿¡¼­ ½ÇÇàµÇ¾ú´Ù¸é ·Î±×ÀÎ ½©ÀÇ »ç¿ëÀÚ°¡ ¸ÞÀÏÀ» ¹ÞÀ» °ÍÀÌ´Ù.
+ .PP
+ ½´ÆÛ À¯Àú´Â ¾î¶² °æ¿ì¿¡µµ ÀÌ ¸í·ÉµéÀ» »ç¿ëÇÒ ¼ö ÀÖÀ¸³ª ´Ù¸¥ »ç¿ëÀÚ´Â
+-.IR /etc/at.allow "°ú " /etc/at.deny ÀÇ
++.IR /etc/at/at.allow "°ú " /etc/at/at.deny ÀÇ
+ ³»¿ë¿¡ µû¶ó »ç¿ë ±ÇÇÑÀÌ °áÁ¤µÈ´Ù. 
+ .PP
+ ¸¸¾à 
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ ÆÄÀÏÀÌ Á¸ÀçÇÏ¸é, ±× ÆÄÀÏ¿¡ ¸í½ÃµÈ »ç¿ëÀÚ¸¸ÀÌ 
+ .B at 
+ ¸í·ÉÀ» »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+ .PP
+ ¸¸¾à
+-.IR /etc/at.allow ÀÌ
++.IR /etc/at/at.allow ÀÌ
+ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é,
+-.IR /etc/at.deny ¿¡
++.IR /etc/at/at.deny ¿¡
+ ¸í½ÃµÇÁö ¾ÊÀº ¸ðµç »ç¿ëÀÚ°¡ 
+ .BR at À»
+ »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+ .PP
+ ¸¸¾à µÎ ÆÄÀÏÀÌ ¸ðµÎ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é, ½´ÆÛ À¯Àú¸¸ÀÌ atÀ» »ç¿ëÇÒ ¼ö ÀÖ´Ù.
+ .PP
+-.IR /etc/at.deny ¸¦
++.IR /etc/at/at.deny ¸¦
+ ºó ÆÄÀÏ·Î µÎ¸é ¸ðµç »ç¿ëÀÚ°¡ ¸í·ÉÀ» »ç¿ëÇÒ ¼ö ÀÖ°í, ÀÌ°ÍÀÌ ÃÊ±â ¼³Á¤ÀÌ´Ù.
+ .SH ¿É¼Ç
+ .TP 8
+@@ -211,17 +211,17 @@
+ \-c
+ ¸í·ÉÇà¿¡ ³ª¿­µÈ ÀÛ¾÷µéÀ» Ç¥ÁØ Ãâ·ÂÀ¸·Î º¸¿©ÁØ´Ù.
+ .SH ÆÄÀÏ
+-.I /var/spool/atjobs
++.I /var/spool/at
+ .br
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ .br
+ .I /proc/loadavg
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH °ü·Ã Ç×¸ñ
+ cron(1), nice(1), sh(1), umask(2), atd(8)
+ .SH ¹ö±×
+diff -ur at.man/ko/man8/atd.8 at.man.pld/ko/man8/atd.8
+--- at.man/ko/man8/atd.8	Sat Apr 29 13:57:21 2000
++++ at.man.pld/ko/man8/atd.8	Thu Oct 18 02:10:58 2001
+@@ -45,14 +45,14 @@
+ .B /usr/sbin/atrun
+ ½ºÅ©¸³Æ®°¡ ¼³Ä¡µÈ´Ù.
+ .SH ÆÄÀÏ
+-.I /var/spool/atjobs
++.I /var/spool/at
+ ÀÛ¾÷À» ÀúÀåÇÏ´Â µð·ºÅä¸®; ¼ÒÀ¯ÀÚ at, ¸ðµå 700ÀÌ¿©¾ß ÇÑ´Ù.
+ .PP
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ °á°ú¸¦ ÀúÀåÇÏ´Â µð·ºÅä¸®; ¼ÒÀ¯ÀÚ at, ¸ðµå 700ÀÌ¿©¾ß ÇÑ´Ù.
+ .PP
+-.IR /etc/at.allow ,
+-.IR /etc/at.deny
++.IR /etc/at/at.allow ,
++.IR /etc/at/at.deny
+ .B at 
+ ½Ã½ºÅÛÀ» »ç¿ëÇÒ ¼ö ÀÖ´Â »ç¿ëÀÚ¸¦ °áÁ¤ÇÑ´Ù.
+ .SH °ü·Ã Ç×¸ñ
+diff -ur at.man/ko/man8/atrun.8 at.man.pld/ko/man8/atrun.8
+--- at.man/ko/man8/atrun.8	Sat Apr 29 13:57:22 2000
++++ at.man.pld/ko/man8/atrun.8	Thu Oct 18 02:18:28 2001
+@@ -13,7 +13,7 @@
+ ÀÌ´Â 
+ .I -s
+ ¿É¼ÇÀ¸·Î 
+-.BR ${exec_prefix}/sbin/atd ¸¦ 
++.BR /usr/sbin/atd ¸¦ 
+ ½ÇÇàÇÏµµ·Ï ÇÏ´Â ½© ½ºÅ©¸³Æ®ÀÌ´Ù.
+ ÀÌÀü ¹öÀü°úÀÇ È£È¯¼ºÀ» À§ÇØ Á¸ÀçÇÑ´Ù.
+ .SH ¿ªÀÚ
+diff -ur at.man/pl/man1/at.1 at.man.pld/pl/man1/at.1
+--- at.man/pl/man1/at.1	Fri Dec  3 13:40:27 1999
++++ at.man.pld/pl/man1/at.1	Thu Oct 18 02:14:53 2001
+@@ -132,7 +132,7 @@
+ .B at 1am tomorrow
+ .PP
+ Dok³adn± definicjê specyfikacji czasu mo¿na znale¼æ w
+-.IR /usr/doc/packages/at/timespec .
++.IR /usr/share/doc/at-3.1.8/timespec .
+ .PP
+ Zarówno
+ .BR at " jak i " batch ,
+@@ -166,31 +166,31 @@
+ .PP
+ Superu¿ytkownik mo¿e zawsze pos³ugiwaæ siê opisywanymi poleceniami.
+ Dla pozosta³ych u¿ytkowników, zezwolenia na u¿ycie at okre¶lane s± przez pliki
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ i
+-.IR /etc/at.deny .
++.IR /etc/at/at.deny .
+ .PP
+ Je¿eli istnieje plik
+-.IR /etc/at.allow ,
++.IR /etc/at/at.allow ,
+ to wy³±cznie u¿ytkownicy, których nazwy doñ wpisano, maj± prawo uruchamiania
+ .BR at .
+ .PP
+ Je¶li nie istnieje
+-.IR /etc/at.allow ,
++.IR /etc/at/at.allow ,
+ to sprawdzany jest plik
+-.IR /etc/at.deny ,
++.IR /etc/at/at.deny ,
+ a ka¿demu u¿ytkownikowi, którego w nim nie wymieniono, zezwala siê
+ na u¿ywanie
+ .BR at .
+ [t³um: tzn. u¿ytkownicy ujêci w
+-.IR /etc/at.deny
++.IR /etc/at/at.deny
+ maj± zakaz uruchamiania opisywanych poleceñ.]
+ .PP
+ Je¶li nie istnieje ¿aden z plików kontroluj±cych dostêp do polecenia at,
+ to pos³ugiwaæ siê nim mo¿e wy³±cznie superu¿ytkownik.
+ .PP
+ Pusty plik
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ oznacza, ¿e pozwala siê na u¿ywanie opisywanych poleceñ wszystkim
+ u¿ytkownikom. Jest to konfiguracja domy¶lna.
+ .SH OPCJE
+@@ -259,17 +259,17 @@
+ .BR cat (1)]
+ podane w wierszu poleceñ zadania na standardowe wyj¶cie.
+ .SH PLIKI
+-.I /var/spool/atjobs
++.I /var/spool/at
+ .br
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ .br
+ .I /proc/loadavg
+ .br
+ .I /var/run/utmp
+ .br
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ .br
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ .SH ZOBACZ TAK¯E
+ .BR cron (1),
+ .BR nice (1),
+diff -ur at.man/pl/man8/atd.8 at.man.pld/pl/man8/atd.8
+--- at.man/pl/man8/atd.8	Tue Feb  6 18:16:05 2001
++++ at.man.pld/pl/man8/atd.8	Thu Oct 18 02:10:58 2001
+@@ -51,16 +51,16 @@
+ \fBatd\fP nie bêdzie dzia³±æ je¶li katalog do przechowywania wyników
+ jest zamontowany poprzez NFS, nawet je¿eli ustawiono \fBno_root_squash\fP.
+ .SH PLIKI
+-.I /var/spool/atjobs
++.I /var/spool/at
+ Katalog przechowuj±cy zadania; powinien posiadaæ prawa dostêpu 700
+ i w³a¶ciciela at.
+ .PP
+-.I /var/spool/atspool
++.I /var/spool/at/spool
+ Katalog przechowuj±cy wyniki (wyj¶cie); powinien posiadaæ prawa dostêpu 700
+ i w³a¶ciciela at.
+ .PP
+-.IR /etc/at.allow ,
+-.IR /etc/at.deny
++.IR /etc/at/at.allow ,
++.IR /etc/at/at.deny
+ okre¶laj±, kto mo¿e pos³ugiwaæ siê systemem
+ .BR at .
+ .SH ZOBACZ TAK¯E
+diff -ur at.man/pl/man8/atrun.8 at.man.pld/pl/man8/atrun.8
+--- at.man/pl/man8/atrun.8	Fri Dec  3 13:40:34 1999
++++ at.man.pld/pl/man8/atrun.8	Thu Oct 18 02:18:57 2001
+@@ -13,7 +13,7 @@
+ uruchamia zadania ustawiane w kolejce przez
+ .BR at(1) .
+ Jest to skrypt pow³oki zawieraj±cy wywo³anie
+-.B ${exec_prefix}/sbin/atd
++.B /usr/sbin/atd
+ z opcj±
+ .IR -s ,
+ dostarczony z uwagi na zapewnienie wstecznej zgodno¶ci

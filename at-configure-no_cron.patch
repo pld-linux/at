@@ -1,0 +1,52 @@
+--- configure.in.old	Thu Oct 18 01:46:50 2001
++++ configure.in	Thu Oct 18 01:51:48 2001
+@@ -137,7 +137,8 @@
+   AC_DEFINE(SPOOLDIR, "/usr/spool/cron")
+   AC_MSG_RESULT(/usr/spool/cron)
+ else
+-  AC_ERROR(Cannot determine value for spool directory)
++  sp=
++  AC_MSG_RESULT(None. Assuming not needed)
+ fi
+ 
+ AC_MSG_CHECKING(jobdir)
+@@ -148,6 +149,9 @@
+     AC_MSG_ERROR(Need JOBDIR.)
+     ;;
+   yes)
++    if test -z "$sp" ; then
++      AC_ERROR(Cannot determine value for spool directory)
++    fi
+     AC_DEFINE_UNQUOTED(ATJOB_DIR, "$sp/atjobs")
+     AC_MSG_RESULT($ATJOB_DIR)
+     ATJBD="$sp/atjobs"
+@@ -158,6 +162,9 @@
+     ATJBD="$withval"
+     ;;
+   esac ],
++  if test -z "$sp" ; then
++    AC_ERROR(Cannot determine value for spool directory)
++  fi
+   AC_DEFINE_UNQUOTED(ATJOB_DIR, "$sp/atjobs")
+   AC_MSG_RESULT($sp/atjobs)
+   ATJBD="$sp/atjobs"
+@@ -172,6 +179,9 @@
+     AC_MSG_ERROR(Need ATSPOOL.)
+     ;;
+   yes)
++    if test -z "$sp" ; then
++      AC_ERROR(Cannot determine value for spool directory)
++    fi
+     AC_DEFINE_UNQUOTED(ATSPOOL_DIR, "$sp/atspool")
+     AC_MSG_RESULT($sp/atspool)
+     ATSPD=$sp/atspool
+@@ -182,6 +192,9 @@
+     ATSPD=$withval
+     ;;
+   esac ],
++  if test -z "$sp" ; then
++    AC_ERROR(Cannot determine value for spool directory)
++  fi
+   AC_DEFINE_UNQUOTED(ATSPOOL_DIR, "$sp/atspool")
+   AC_MSG_RESULT($sp/atspool)
+   ATSPD=$sp/atspool
