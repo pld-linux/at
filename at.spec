@@ -27,7 +27,7 @@ Patch7:		at-debian.patch
 Patch8:		at-buflen.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
-Requires:	rc-scripts >= 0.2.0
+Prereq:		rc-scripts >= 0.2.0
 Requires:	/usr/lib/sendmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
