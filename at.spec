@@ -116,7 +116,7 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/at/*
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/*
 
-%attr(755,root,root) /etc/rc.d/init.d/atd
+%attr(754,root,root) /etc/rc.d/init.d/atd
 %attr(755,root,root) %{_sbindir}/*
 
 %attr(4711,root,root) %{_bindir}/at
