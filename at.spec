@@ -5,21 +5,21 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	4
+Release:	6
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
-URL:		ftp://jurix.jura.uni-sb.de/pub/linux/sources/system/daemons
-Source0:	%{name}-%{version}.tar.gz
-Source1:	%{name}d.init
-Patch0:		%{name}-lockfile.patch
-Patch1:		%{name}-install.patch
-Patch2:		%{name}-man.patch
-Patch3:		%{name}-batch.patch
-Buildroot:	/tmp/%{name}-%{version}-root
+Source0:	ftp://jurix.jura.uni-sb.de/pub/linux/sources/system/daemons/%{name}-%{version}.tar.gz
+Source1:	atd.init
+Patch0:		at-lockfile.patch
+Patch1:		at-install.patch
+Patch2:		at-man.patch
+Patch3:		at-batch.patch
+Patch4:		at.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Requires:	mailx
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 at and batch read commands from standard input or a specified file
@@ -91,10 +91,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add atd
+if test -r /var/run/atd.pid; then
+	/etc/rc.d/init.d/atd stop >&2
+	/etc/rc.d/init.d/atd start >&2
+else
+	echo "Run \"/etc/rc.d/init.d/atd start\" to start atd daemon."
+fi
 
 %preun
-if [ $1 = 0 ] ; then
-  /sbin/chkconfig --del atd
+if [ "$1" = "0" ] ; then
+	/sbin/chkconfig --del atd
+	/etc/rc.d/init.d/atd stop >&2
 fi
 
 %files
@@ -103,10 +110,10 @@ fi
 
 %attr(750,root,root) %dir /etc/at
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/at/*
-%attr(750,root,root) /etc/rc.d/init.d/atd
+%attr(754,root,root) /etc/rc.d/init.d/atd
 %attr(755,root,root) /usr/sbin/*
 
-%attr(4711,root,root) /usr/bin/at
+%attr(4755,root,root) /usr/bin/at
 
 %attr(755,root,root) /usr/bin/atq
 %attr(755,root,root) /usr/bin/atrm
@@ -119,6 +126,15 @@ fi
 %attr(600,daemon,daemon) %ghost /var/spool/at/.SEQ
 
 %changelog
+* Thu Mar 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [3.1.7-6]
+- added at.patch adopted from latest Debian source which fix man pages,
+  lex relayted bugs, displaing corectly dates in am/pm format and fiew
+  others,
+- modifications %post, %preun for standarizing this section; this allow stop
+  service on uninstall and automatic restart on upgrade,
+- changed permission (to more liberal).
+
 * Sun Sep 13 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
   [3.1.7-5d]
 - build against glibc-2.1,
