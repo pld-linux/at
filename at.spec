@@ -115,8 +115,7 @@ install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man8/atrun.8
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man*/*,pl/man?/*} \
-	ChangeLog README
+gzip -9nf ChangeLog README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
