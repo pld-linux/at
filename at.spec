@@ -5,7 +5,7 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	14
+Release:	15
 License:	GPL
 Group:		Daemons
 Group(pl):	Serwery
