@@ -8,8 +8,6 @@ Version:	3.1.8
 Release:	18
 License:	GPL
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
 Source1:	%{name}d.init
 Source2:	%{name}.sysconfig
