@@ -26,7 +26,7 @@ Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Requires:	mailx
 Requires:	rc-scripts
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
 
