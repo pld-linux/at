@@ -33,13 +33,13 @@ Patch11:	%{name}-heapcorruption.patch
 Patch12:	%{name}-open.patch
 Patch13:	%{name}-dst.patch
 Patch14:	%{name}-env-tng.patch
-Prereq:		fileutils
-Prereq:		/sbin/chkconfig
-Prereq:		rc-scripts >= 0.2.0
-Requires:	/usr/lib/sendmail
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
+PreReq:		rc-scripts >= 0.2.0
+Requires(post):	fileutils
+Requires(post,preun):	/sbin/chkconfig
+Requires:	/usr/lib/sendmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
