@@ -122,10 +122,10 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man*/*,pl/man?/*} \
 rm -rf $RPM_BUILD_ROOT
 
 %post
-NAME=atd; DESC="atd daemon"; %chkconfig_post
+NAME=atd; DESC="atd daemon"; %chkconfig_add
 
 %preun
-NAME=atd; %chkconfig_preun
+NAME=atd; %chkconfig_del
 
 %files
 %defattr(644,root,root,755)
