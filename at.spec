@@ -13,9 +13,11 @@ Release:	28
 License:	GPL
 Group:		Daemons
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
+# Source0-md5:	ded9b0e4d153cf073349e75027d09e8e
 Source1:	%{name}d.init
 Source2:	%{name}.sysconfig
 Source3:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
+# Source3-md5:	3a35eff8786f0c91cd3193cee9d9a076
 Patch0:		%{name}-lockfile.patch
 Patch1:		%{name}-install.patch
 Patch2:		%{name}-man.patch
