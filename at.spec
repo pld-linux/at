@@ -23,6 +23,8 @@ Patch3:		at.patch
 Patch4:		at-typo.patch
 Patch5:		at-sigchld.patch
 Patch6:		at-sendmail.patch
+Patch7:		at-debian.patch
+Patch8:		at-buflen.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Requires:	rc-scripts >= 0.2.0
@@ -32,8 +34,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	/etc/at
 
 %description
-at and batch read commands from standard input or a specified file
-which are to be executed at a later time, using /bin/sh.
+At and batch read commands from standard input or from a specified
+file. At allows you to specify that a command will be run at a
+particular time (now or a specified time in the future). Batch will
+execute commands when the system load levels drop to a particular
+level. Both commands use /bin/sh to run the commands.
 
 %description -l de
 Stapelverarbeitung von Lesebefehlen von einer Standard- oder einer
@@ -62,6 +67,8 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 %patch4 -p1 
 %patch5 -p1 
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 aclocal
