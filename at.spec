@@ -1,11 +1,15 @@
 Summary:	at job spooler
 Summary(de):	at-Job-Spooler
+Summary(es):	Spooler de jobs at
 Summary(fr):	Gestionnaire de taches at
 Summary(pl):	Demon kontroli zadaЯ
+Summary(pt_BR):	Spooler de jobs at
+Summary(ru):	Утилиты для отложенного запуска заданий
 Summary(tr):	Ч dЭzenleyici
+Summary(uk):	Утил╕ти для в╕дкладеного запуску завдань
 Name:		at
 Version:	3.1.8
-Release:	18
+Release:	26
 License:	GPL
 Group:		Daemons
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
@@ -25,6 +29,8 @@ Patch9:		%{name}-configure-no_cron.patch
 Patch10:	%{name}-pld_noenglish_man.patch
 Patch11:	%{name}-heapcorruption.patch
 Patch12:	%{name}-open.patch
+Patch13:	%{name}-dst.patch
+Patch14:	%{name}-env-tng.patch
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
@@ -48,6 +54,10 @@ Stapelverarbeitung von Lesebefehlen von einer Standard- oder einer
 genannten Datei zu einem spДteren Zeitpunkt unter Verwendung von
 /bin/sh.
 
+%description -l es
+at y batch leen comandos de la entrada padrСn o de un archivo
+especificado que son ejecutados mАs tarde, usando /bin/sh.
+
 %description -l fr
 at et batch lisent, sur l'entrИe standard ou dans un fichier, des
 commandes qui doivent Йtre exИcutИes plus tard en utilisant /bin/sh.
@@ -57,9 +67,27 @@ At i batch czytaj╠ komendy ze standardowego wej╤cia lub specyficznego
 pliku, ktСre s╠ nastЙpnie wykonywane o okre╤lonej godzinie, przy
 pomocy /bin/sh.
 
+%description -l pt_BR
+at e batch lЙem comandos da entrada padrЦo ou de um arquivo
+especificado que sЦo executados mais tarde, usando /bin/sh.
+
+%description -l ru
+At и batch читают команды со стандартного ввода или указанного файла.
+At позволяет запустить команду в определенное время (сейчас или в
+будущем). Batch исполняет команды когда загрузка системы падает до
+определенного значения. Обе программы используют /bin/sh для запуска
+других программ.
+
 %description -l tr
 at ve batch /bin/sh kabuПunu kullanarak, belli bir saatte ГalЩЧtЩrmak
 Эzere standart giriЧden ya da bir dosyadan komut okur.
+
+%description -l uk
+At та batch читають команди з╕ стандартного вводу або зазначеного
+файлу. At дозволя╓ запустити команду в зазначений час (зараз або у
+майбутньому). Batch викону╓ команди коли завантаження системи пада╓ до
+визначеного значення. Обидв╕ програми використовують /bin/sh для
+запуску ╕нших програм.
 
 %prep
 %setup -q -a3
@@ -76,9 +104,11 @@ at ve batch /bin/sh kabuПunu kullanarak, belli bir saatte ГalЩЧtЩrmak
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
 %build
-ln -sf /usr/share/automake/config.sub config.sub
+cp -f %{_datadir}/automake/config.* .
 aclocal
 %{__autoconf}
 %configure \
@@ -119,8 +149,6 @@ done
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
-gzip -9nf ChangeLog README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -142,7 +170,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc {ChangeLog,README}.gz
+%doc ChangeLog README
 
 %attr(750,root,root) %dir %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*
