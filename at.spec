@@ -122,10 +122,20 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/{man*/*,pl/man?/*} \
 rm -rf $RPM_BUILD_ROOT
 
 %post
-NAME=atd; DESC="atd daemon"; %chkconfig_add
+/sbin/chkconfig --add atd
+if [ -f /var/lock/subsys/atd ]; then
+	/etc/rc.d/init.d/atd restart >&2
+else
+	echo "Run \"/etc/rc.d/init.d/atd start\" to start atd daemon."
+fi
 
 %preun
-NAME=atd; %chkconfig_del
+if [ "$1" = "0" ] ; then
+	if [ -f /var/lock/subsys/atd ]; then
+		/etc/rc.d/init.d/atd stop >&2
+	fi
+	/sbin/chkconfig --del atd
+fi
 
 %files
 %defattr(644,root,root,755)
