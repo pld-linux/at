@@ -19,6 +19,7 @@ Patch3:		%{name}-batch.patch
 Buildroot:	/tmp/%{name}-%{version}-root
 Prereq:		fileutils
 Prereq:		/sbin/chkconfig
+Requires:	mailx
 
 %description
 at and batch read commands from standard input or a specified file
@@ -82,8 +83,8 @@ echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/man/man5/at_acces.5
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
-bzip2 -9  ChangeLog README
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man[158]/*
+gzip -9fn $RPM_BUILD_ROOT/usr/man/man[158]/* \
+	ChangeLog README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -98,7 +99,7 @@ fi
 
 %files
 %defattr(644,root,root,755) 
-%doc {ChangeLog,README}.bz2
+%doc {ChangeLog,README}.gz
 
 %attr(750,root,root) %dir /etc/at
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/at/*
@@ -111,7 +112,7 @@ fi
 %attr(755,root,root) /usr/bin/atrm
 %attr(755,root,root) /usr/bin/batch
 
-%attr(644,root, man) /usr/man/man[158]/*
+/usr/man/man[158]/*
 
 %attr(700,daemon,daemon) %dir /var/spool/at
 %attr(700,daemon,daemon) %dir /var/spool/at/spool
