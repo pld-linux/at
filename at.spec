@@ -63,12 +63,12 @@ at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
 
 %prep
 %setup -q -a3
-%patch0 -p1 
-%patch1 -p1 
-%patch2 -p1 
-%patch3 -p1 
-%patch4 -p1 
-%patch5 -p1 
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
@@ -87,7 +87,7 @@ autoconf
 	--with-etcdir=%{_sysconfdir} \
 	--with-daemon_username=root \
 	--with-daemon_groupname=root
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
