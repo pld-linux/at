@@ -72,19 +72,19 @@ mv $RPM_BUILD_ROOT/usr/doc/at $RPM_BUILD_ROOT/usr/doc/%{name}-%{version}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/atd
 
-rm -f $RPM_BUILD_ROOT/usr/share/man/man1/{atq,atrm,batch}.1
-rm -f $RPM_BUILD_ROOT/usr/share/man/man5/at_deny.5
+rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{atq,atrm,batch}.1
+rm -f $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
 
-echo .so at.1 > $RPM_BUILD_ROOT/usr/share/man/man1/atq.1
-echo .so at.1 > $RPM_BUILD_ROOT/usr/share/man/man1/atrm.1
-echo .so at.1 > $RPM_BUILD_ROOT/usr/share/man/man1/batch.1
+echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atq.1
+echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atrm.1
+echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/batch.1
 
-echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/share/man/man5/at_deny.5
-echo .so at_allow.5 > $RPM_BUILD_ROOT/usr/share/man/man5/at_acces.5
+echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
+echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_acces.5
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
-gzip -9fn $RPM_BUILD_ROOT/usr/share/man/man[158]/* \
+gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man[158]/* \
 	ChangeLog README
 
 %clean
@@ -120,7 +120,7 @@ fi
 %attr(755,root,root) /usr/bin/atrm
 %attr(755,root,root) /usr/bin/batch
 
-/usr/share/man/man[158]/*
+%{_mandir}/man[158]/*
 
 %attr(700,daemon,daemon) %dir /var/spool/at
 %attr(700,daemon,daemon) %dir /var/spool/at/spool
