@@ -114,11 +114,11 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/atd
 %attr(755,root,root) /usr/sbin/*
 
-%attr(4755,root,root) /usr/bin/at
+%attr(4755,root,root) %{_bindir}/at
 
-%attr(755,root,root) /usr/bin/atq
-%attr(755,root,root) /usr/bin/atrm
-%attr(755,root,root) /usr/bin/batch
+%attr(755,root,root) %{_bindir}/atq
+%attr(755,root,root) %{_bindir}/atrm
+%attr(755,root,root) %{_bindir}/batch
 
 %{_mandir}/man[158]/*
 
