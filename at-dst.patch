@@ -1,0 +1,13 @@
+diff -u at-3.1.8/parsetime.y.orig at-3.1.8/parsetime.y
+--- at-3.1.8/parsetime.y.orig	Sun Mar  4 18:13:06 2001
++++ at-3.1.8/parsetime.y	Sun Mar  4 18:26:04 2001
+@@ -593,6 +593,9 @@
+ 
+     case YEAR:
+ 	exectm.tm_year += number;
++	/* Recalculate tm_isdst so we don't get a +-1 hour creep */
++	exectm.tm_isdst = -1;
++	(void) mktime(&exectm);
+ 	break;
+ 
+     default:
