@@ -13,18 +13,18 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-test -x /usr/sbin/atd || exit 0
-#
+# Try get sysconfig ...
+if [ -f /etc/sysconfig/at ]; then
+    . /etc/sysconfig/at
+fi    
+
 #	See how we were called.
 #
 case "$1" in
   start)
-	# Check if atd is already running
-	if [ ! -f /var/lock/subsys/atd ]; then
-	    show Starting at daemon
-	    daemon atd
-	    touch /var/lock/subsys/atd
-	fi
+	show Starting at daemon
+        daemon atd
+        touch /var/lock/subsys/atd
 	;;
   stop)
 	show Stopping at daemon
