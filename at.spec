@@ -5,7 +5,7 @@ Summary(pl):	Demon kontroli zadañ
 Summary(tr):	þ düzenleyici
 Name:		at
 Version:	3.1.8
-Release:	3d
+Release:	4
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -98,11 +98,11 @@ fi
 
 %files
 %defattr(644,root,root,755) 
-%doc ChangeLog.bz2 README.bz2
+%doc {ChangeLog,README}.bz2
 
 %attr(750,root,root) %dir /etc/at
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/at/*
-%attr(700,root,root) %config /etc/rc.d/init.d/atd
+%attr(750,root,root) /etc/rc.d/init.d/atd
 %attr(755,root,root) /usr/sbin/*
 
 %attr(4711,root,root) /usr/bin/at
@@ -142,21 +142,5 @@ fi
 - smarter instaling %doc,
 - changed permission on some executables.
 - added %attr and %defattr macros in %files (allow build package from
-  non-root account).
-
-* Tue May 05 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Wed Apr 22 1998 Michael K. Johnson <johnsonm@redhat.com>
-- enhanced initscript
-
-* Sun Nov 09 1997 Michael K. Johnson <johnsonm@redhat.com>
-- learned to spell
-
-* Wed Oct 22 1997 Michael K. Johnson <johnsonm@redhat.com>
-- updated to at version 3.1.7
-- updated lock and sequence file handling with %ghost
-- Use chkconfig and atd, now conflicts with old crontabs packages
-
-* Thu Jun 19 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
+  non-root account),
+- start at RH spec.
