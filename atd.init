@@ -17,7 +17,7 @@
 # Get service config
 [ -f /etc/sysconfig/atd ] && . /etc/sysconfig/atd
 
-
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -25,27 +25,33 @@ case "$1" in
 	if [ ! -f /var/lock/subsys/atd ]; then
 		msg_starting at
 		daemon atd
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/atd
 	else
 		msg_already_running atd
-		exit 1
 	fi
-        touch /var/lock/subsys/atd
 	;;
   stop)
-	msg_stopping at
-	killproc atd
-	rm -f /var/lock/subsys/atd
+	if [ -f /var/lock/subsys/atd ]; then
+		msg_stopping at
+		killproc atd
+		rm -f /var/lock/subsys/atd
+	else
+		msg_not_running atd
+	fi
 	;;
-  reload|restart)
+  force-reload|restart)
 	$0 stop
 	$0 start
+	exit $?
 	;;
   status)
 	status atd
+	exit $?
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|reload|status}"
-	exit 1
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
 esac
 
-exit 0
+exit $RETVAL
