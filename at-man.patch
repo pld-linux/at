@@ -1,0 +1,80 @@
+diff -Nur at-3.1.8/at.1.in at-3.1.8.pld/at.1.in
+--- at-3.1.8/at.1.in	Sun Sep 28 22:00:38 1997
++++ at-3.1.8.pld/at.1.in	Thu Dec 31 11:49:43 1998
+@@ -117,7 +117,7 @@
+ .B at 1am tomorrow.
+ .PP
+ The exact definition of the time specification can be found in
+-.IR @prefix@/doc/at/timespec .
++.IR /usr/doc/at-3.1.8/timespec .
+ .PP
+ For both
+ .BR at " and " batch ,
+diff -Nur at-3.1.8/at_allow.5 at-3.1.8.pld/at_allow.5
+--- at-3.1.8/at_allow.5	Sun Sep 28 22:00:38 1997
++++ at-3.1.8.pld/at_allow.5	Thu Dec 31 11:52:46 1998
+@@ -4,9 +4,9 @@
+ at.acess, at.deny \- determine who can submit jobs via at or batch
+ .SH DESCRIPTION
+ The
+-.I /etc/at.access
++.I /etc/at/at.access
+ and
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ files determine which user can submit commands for later execution via
+ .B at(1)
+ or
+@@ -19,14 +19,14 @@
+ .BR at .
+ .PP
+ If the file
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ exists, only usernames mentioned in it are allowed to use
+ .BR at .
+ .PP
+ If
+-.I /etc/at.allow
++.I /etc/at/at.allow
+ does not exist,
+-.I /etc/at.deny
++.I /etc/at/at.deny
+ is checked.
+ .SH "SEE ALSO"
+ at(1), atrun(1), cron(1), crontab(1), atd(8)
+diff -Nur at-3.1.8/atd.8.in at-3.1.8.pld/atd.8.in
+--- at-3.1.8/atd.8.in	Sun Sep 28 22:00:38 1997
++++ at-3.1.8.pld/atd.8.in	Thu Dec 31 11:53:59 1998
+@@ -44,7 +44,7 @@
+ A script invoking
+ .B "atd -s"
+ is installed as
+-.B @prefix@/sbin/atrun
++.B /usr/sbin/atrun
+ for backward compatibility.
+ .SH FILES
+ .I @ATJBD@
+@@ -55,8 +55,8 @@
+ The direcotry for storing output; this should be mode 700, owner
+ @DAEMON_USERNAME@.
+ .PP
+-.IR /etc/at.allow ,
+-.IR /etc/at.deny
++.IR /etc/at/at.allow ,
++.IR /etc/at/at.deny
+ determine who can use the
+ .B at
+ system.
+diff -Nur at-3.1.8/atrun.8.in at-3.1.8.pld/atrun.8.in
+--- at-3.1.8/atrun.8.in	Sun Sep 28 22:00:38 1997
++++ at-3.1.8.pld/atrun.8.in	Thu Dec 31 11:54:28 1998
+@@ -12,7 +12,7 @@
+ runs jobs queued by
+ .BR at(1) .
+ It is a shell script containing invoking
+-.B @sbindir@/atd
++.B /usr/sbin/atd
+ with the
+ .I -s
+ option, and is provided for backward compatibility with older

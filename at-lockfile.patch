@@ -1,0 +1,12 @@
+diff -Nur at-3.1.8/at.c at-3.1.8.pld/at.c
+--- at-3.1.8/at.c	Sun Sep 28 22:00:37 1997
++++ at-3.1.8.pld/at.c	Thu Dec 31 11:31:39 1998
+@@ -199,7 +199,7 @@
+ 	fscanf(fid, "%5lx", &jobno);
+ 	rewind(fid);
+     } else {
+-	fid = fopen(ATJOB_DIR "/.SEQ", "w");
++	fid = fopen(LFILE, "w");
+ 	if (fid == NULL)
+ 	    return EOF;
+     }
