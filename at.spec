@@ -47,10 +47,11 @@ standart giriþden ya da bir dosyadan komut okur.
 %patch1 -p1 
 %patch2 -p1 
 %patch3 -p1 
+%patch4 -p1 
 
 %build
 autoconf
-CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure \
 	--with-atspool=/var/spool/at/spool \
 	--with-jobdir=/var/spool/at \
