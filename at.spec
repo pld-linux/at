@@ -32,25 +32,26 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	/etc/at
 
 %description
-at and batch read commands from standard input or a specified file which
-are to be executed at a later time, using /bin/sh.
+at and batch read commands from standard input or a specified file
+which are to be executed at a later time, using /bin/sh.
 
 %description -l de
 Stapelverarbeitung von Lesebefehlen von einer Standard- oder einer
-genannten Datei zu einem späteren Zeitpunkt unter Verwendung von /bin/sh.
+genannten Datei zu einem späteren Zeitpunkt unter Verwendung von
+/bin/sh.
 
 %description -l fr
-at et batch lisent, sur l'entrée standard ou dans un fichier, des commandes
-qui doivent être exécutées plus tard en utilisant /bin/sh.
+at et batch lisent, sur l'entrée standard ou dans un fichier, des
+commandes qui doivent être exécutées plus tard en utilisant /bin/sh.
 
 %description -l pl
 At i batch czytaj± komendy ze standardowego wej¶cia lub specyficznego
-pliku, które s± nastêpnie wykonywane o okre¶lonej godzinie, przy pomocy
-/bin/sh.
+pliku, które s± nastêpnie wykonywane o okre¶lonej godzinie, przy
+pomocy /bin/sh.
 
 %description -l tr
-at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak üzere
-standart giriþden ya da bir dosyadan komut okur.
+at ve batch /bin/sh kabuðunu kullanarak, belli bir saatte çalýþtýrmak
+üzere standart giriþden ya da bir dosyadan komut okur.
 
 %prep
 %setup -q
