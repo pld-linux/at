@@ -110,7 +110,7 @@ at та batch читають команди з╕ стандартного вводу або зазначеного
 %patch14 -p1
 
 %build
-cp -f %{_datadir}/automake/config.* .
+cp -f /usr/share/automake/config.* .
 %{__aclocal}
 %{__autoconf}
 %configure \
@@ -125,7 +125,8 @@ cp -f %{_datadir}/automake/config.* .
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
-%{__make} IROOT=$RPM_BUILD_ROOT install
+%{__make} install \
+	IROOT=$RPM_BUILD_ROOT
 
 install at.deny $RPM_BUILD_ROOT%{_sysconfdir}
 
@@ -174,20 +175,15 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README timespec
-
 %attr(750,root,root) %dir %{_sysconfdir}
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*
-%attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/*
-
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
+%attr(640,root,root) %config %verify(not md5 mtime size) /etc/sysconfig/*
 %attr(754,root,root) /etc/rc.d/init.d/atd
 %attr(755,root,root) %{_sbindir}/*
-
 %attr(4755,root,root) %{_bindir}/at
-
 %attr(755,root,root) %{_bindir}/atq
 %attr(755,root,root) %{_bindir}/atrm
 %attr(755,root,root) %{_bindir}/batch
-
 %{_mandir}/man*/*
 %lang(es) %{_mandir}/es/man*/*
 %lang(fi) %{_mandir}/fi/man*/*
@@ -198,7 +194,6 @@ fi
 %lang(ja) %{_mandir}/ja/man*/*
 %lang(ko) %{_mandir}/ko/man*/*
 %lang(pl) %{_mandir}/pl/man*/*
-
 %attr(750,root,root) %dir /var/spool/at
 %attr(750,root,root) %dir /var/spool/at/spool
 %attr(600,root,root) %ghost /var/spool/at/.SEQ
