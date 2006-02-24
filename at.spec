@@ -36,10 +36,11 @@ Patch14:	%{name}-env-tng.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
-PreReq:		rc-scripts >= 0.2.0
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post):	fileutils
 Requires(post,preun):	/sbin/chkconfig
 Requires:	/usr/lib/sendmail
+Requires:	rc-scripts >= 0.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/at
@@ -158,17 +159,11 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add atd
 touch /var/spool/at/.SEQ
-if [ -f /var/lock/subsys/atd ]; then
-	/etc/rc.d/init.d/atd restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/atd start\" to start atd daemon."
-fi
+%service atd restart "atd daemon"
 
 %preun
 if [ "$1" = "0" ] ; then
-	if [ -f /var/lock/subsys/atd ]; then
-		/etc/rc.d/init.d/atd stop >&2
-	fi
+	%service atd stop
 	/sbin/chkconfig --del atd
 fi
 
@@ -177,7 +172,7 @@ fi
 %doc ChangeLog README timespec
 %attr(750,root,root) %dir %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
-%attr(640,root,root) %config %verify(not md5 mtime size) /etc/sysconfig/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/*
 %attr(754,root,root) /etc/rc.d/init.d/atd
 %attr(755,root,root) %{_sbindir}/*
 %attr(4755,root,root) %{_bindir}/at
