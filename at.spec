@@ -9,7 +9,7 @@ Summary(tr):	Ч dЭzenleyici
 Summary(uk):	Утил╕ти для в╕дкладеного запуску завдань
 Name:		at
 Version:	3.1.8
-Release:	31
+Release:	32
 License:	GPL
 Group:		Daemons
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
