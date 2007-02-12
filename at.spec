@@ -1,12 +1,12 @@
 Summary:	at job spooler
-Summary(de):	at-Job-Spooler
-Summary(es):	Gestionario de tareas
-Summary(fr):	Gestionnaire de taches at
-Summary(pl):	Demon kontroli zadaЯ
-Summary(pt_BR):	Spooler de jobs at
-Summary(ru):	Утилиты для отложенного запуска заданий
-Summary(tr):	Ч dЭzenleyici
-Summary(uk):	Утил╕ти для в╕дкладеного запуску завдань
+Summary(de.UTF-8):   at-Job-Spooler
+Summary(es.UTF-8):   Gestionario de tareas
+Summary(fr.UTF-8):   Gestionnaire de taches at
+Summary(pl.UTF-8):   Demon kontroli zadaе└
+Summary(pt_BR.UTF-8):   Spooler de jobs at
+Summary(ru.UTF-8):   пёя┌п╦п╩п╦я┌я▀ п╢п╩я▐ п╬я┌п╩п╬п╤п╣п╫п╫п╬пЁп╬ п╥п╟п©я┐я│п╨п╟ п╥п╟п╢п╟п╫п╦п╧
+Summary(tr.UTF-8):   е÷ dц╪zenleyici
+Summary(uk.UTF-8):   пёя┌п╦п╩я√я┌п╦ п╢п╩я▐ п╡я√п╢п╨п╩п╟п╢п╣п╫п╬пЁп╬ п╥п╟п©я┐я│п╨я┐ п╥п╟п╡п╢п╟п╫я▄
 Name:		at
 Version:	3.1.8
 Release:	32
@@ -52,45 +52,45 @@ particular time (now or a specified time in the future). Batch will
 execute commands when the system load levels drop to a particular
 level. Both commands use /bin/sh to run the commands.
 
-%description -l de
+%description -l de.UTF-8
 Stapelverarbeitung von Lesebefehlen von einer Standard- oder einer
-genannten Datei zu einem spДteren Zeitpunkt unter Verwendung von
+genannten Datei zu einem spц╓teren Zeitpunkt unter Verwendung von
 /bin/sh.
 
-%description -l es
-At y batch leen comandos de la entrada padrСn o de un archivo
-especificado que son ejecutados mАs tarde, usando /bin/sh.
+%description -l es.UTF-8
+At y batch leen comandos de la entrada padrцЁn o de un archivo
+especificado que son ejecutados mц║s tarde, usando /bin/sh.
 
-%description -l fr
-at et batch lisent, sur l'entrИe standard ou dans un fichier, des
-commandes qui doivent Йtre exИcutИes plus tard en utilisant /bin/sh.
+%description -l fr.UTF-8
+at et batch lisent, sur l'entrц╘e standard ou dans un fichier, des
+commandes qui doivent ц╙tre exц╘cutц╘es plus tard en utilisant /bin/sh.
 
-%description -l pl
-at i batch czytaj╠ komendy ze standardowego wej╤cia lub specyficznego
-pliku, ktСre s╠ nastЙpnie wykonywane o okre╤lonej godzinie, przy
+%description -l pl.UTF-8
+at i batch czytajд┘ komendy ze standardowego wejе⌡cia lub specyficznego
+pliku, ktцЁre sд┘ nastд≥pnie wykonywane o okreе⌡lonej godzinie, przy
 pomocy /bin/sh.
 
-%description -l pt_BR
-at e batch lЙem comandos da entrada padrЦo ou de um arquivo
-especificado que sЦo executados mais tarde, usando /bin/sh.
+%description -l pt_BR.UTF-8
+at e batch lц╙em comandos da entrada padrцёo ou de um arquivo
+especificado que sцёo executados mais tarde, usando /bin/sh.
 
-%description -l ru
-at и batch читают команды со стандартного ввода или указанного файла.
-at позволяет запустить команду в определенное время (сейчас или в
-будущем). batch исполняет команды когда загрузка системы падает до
-определенного значения. Обе программы используют /bin/sh для запуска
-других программ.
+%description -l ru.UTF-8
+at п╦ batch я┤п╦я┌п╟я▌я┌ п╨п╬п╪п╟п╫п╢я▀ я│п╬ я│я┌п╟п╫п╢п╟я─я┌п╫п╬пЁп╬ п╡п╡п╬п╢п╟ п╦п╩п╦ я┐п╨п╟п╥п╟п╫п╫п╬пЁп╬ я└п╟п╧п╩п╟.
+at п©п╬п╥п╡п╬п╩я▐п╣я┌ п╥п╟п©я┐я│я┌п╦я┌я▄ п╨п╬п╪п╟п╫п╢я┐ п╡ п╬п©я─п╣п╢п╣п╩п╣п╫п╫п╬п╣ п╡я─п╣п╪я▐ (я│п╣п╧я┤п╟я│ п╦п╩п╦ п╡
+п╠я┐п╢я┐я┴п╣п╪). batch п╦я│п©п╬п╩п╫я▐п╣я┌ п╨п╬п╪п╟п╫п╢я▀ п╨п╬пЁп╢п╟ п╥п╟пЁя─я┐п╥п╨п╟ я│п╦я│я┌п╣п╪я▀ п©п╟п╢п╟п╣я┌ п╢п╬
+п╬п©я─п╣п╢п╣п╩п╣п╫п╫п╬пЁп╬ п╥п╫п╟я┤п╣п╫п╦я▐. п·п╠п╣ п©я─п╬пЁя─п╟п╪п╪я▀ п╦я│п©п╬п╩я▄п╥я┐я▌я┌ /bin/sh п╢п╩я▐ п╥п╟п©я┐я│п╨п╟
+п╢я─я┐пЁп╦я┘ п©я─п╬пЁя─п╟п╪п╪.
 
-%description -l tr
-at ve batch /bin/sh kabuПunu kullanarak, belli bir saatte ГalЩЧtЩrmak
-Эzere standart giriЧden ya da bir dosyadan komut okur.
+%description -l tr.UTF-8
+at ve batch /bin/sh kabuд÷unu kullanarak, belli bir saatte ц╖alд╠е÷tд╠rmak
+ц╪zere standart giriе÷den ya da bir dosyadan komut okur.
 
-%description -l uk
-at та batch читають команди з╕ стандартного вводу або зазначеного
-файлу. At дозволя╓ запустити команду в зазначений час (зараз або у
-майбутньому). batch викону╓ команди коли завантаження системи пада╓ до
-визначеного значення. Обидв╕ програми використовують /bin/sh для
-запуску ╕нших програм.
+%description -l uk.UTF-8
+at я┌п╟ batch я┤п╦я┌п╟я▌я┌я▄ п╨п╬п╪п╟п╫п╢п╦ п╥я√ я│я┌п╟п╫п╢п╟я─я┌п╫п╬пЁп╬ п╡п╡п╬п╢я┐ п╟п╠п╬ п╥п╟п╥п╫п╟я┤п╣п╫п╬пЁп╬
+я└п╟п╧п╩я┐. At п╢п╬п╥п╡п╬п╩я▐я■ п╥п╟п©я┐я│я┌п╦я┌п╦ п╨п╬п╪п╟п╫п╢я┐ п╡ п╥п╟п╥п╫п╟я┤п╣п╫п╦п╧ я┤п╟я│ (п╥п╟я─п╟п╥ п╟п╠п╬ я┐
+п╪п╟п╧п╠я┐я┌п╫я▄п╬п╪я┐). batch п╡п╦п╨п╬п╫я┐я■ п╨п╬п╪п╟п╫п╢п╦ п╨п╬п╩п╦ п╥п╟п╡п╟п╫я┌п╟п╤п╣п╫п╫я▐ я│п╦я│я┌п╣п╪п╦ п©п╟п╢п╟я■ п╢п╬
+п╡п╦п╥п╫п╟я┤п╣п╫п╬пЁп╬ п╥п╫п╟я┤п╣п╫п╫я▐. п·п╠п╦п╢п╡я√ п©я─п╬пЁя─п╟п╪п╦ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я▌я┌я▄ /bin/sh п╢п╩я▐
+п╥п╟п©я┐я│п╨я┐ я√п╫я┬п╦я┘ п©я─п╬пЁя─п╟п╪.
 
 %prep
 %setup -q -a3
