@@ -1,12 +1,12 @@
 Summary:	at job spooler
-Summary(de.UTF-8):   at-Job-Spooler
-Summary(es.UTF-8):   Gestionario de tareas
-Summary(fr.UTF-8):   Gestionnaire de taches at
-Summary(pl.UTF-8):   Demon kontroli zadań
-Summary(pt_BR.UTF-8):   Spooler de jobs at
-Summary(ru.UTF-8):   Утилиты для отложенного запуска заданий
-Summary(tr.UTF-8):   ş düzenleyici
-Summary(uk.UTF-8):   Утиліти для відкладеного запуску завдань
+Summary(de.UTF-8):	at-Job-Spooler
+Summary(es.UTF-8):	Gestionario de tareas
+Summary(fr.UTF-8):	Gestionnaire de taches at
+Summary(pl.UTF-8):	Demon kontroli zadań
+Summary(pt_BR.UTF-8):	Spooler de jobs at
+Summary(ru.UTF-8):	Утилиты для отложенного запуска заданий
+Summary(tr.UTF-8):	ş düzenleyici
+Summary(uk.UTF-8):	Утиліти для відкладеного запуску завдань
 Name:		at
 Version:	3.1.8
 Release:	32
