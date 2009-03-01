@@ -17,10 +17,9 @@ diff -Nru at-3.1.8/at.1.in at-3.1.8.new/at.1.in
 diff -Nru at-3.1.8/at.deny at-3.1.8.new/at.deny
 --- at-3.1.8/at.deny	Sun Feb 23 21:24:34 1997
 +++ at-3.1.8.new/at.deny	Sun Mar 28 19:46:41 1999
-@@ -1,13 +1,24 @@
+@@ -1,13 +1,23 @@
 -nobody
 +alias
-+backup
  bin
  daemon
 -sys
