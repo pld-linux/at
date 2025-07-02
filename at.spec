@@ -134,8 +134,8 @@ install at.deny $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/atd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/atd
 
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{atq,atrm,batch}.1
-rm -f $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/{atq,atrm,batch}.1
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
 
 echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atq.1
 echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atrm.1
@@ -171,15 +171,24 @@ fi
 %defattr(644,root,root,755)
 %doc ChangeLog README timespec
 %attr(750,root,root) %dir %{_sysconfdir}
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/at.deny
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/atd
 %attr(754,root,root) /etc/rc.d/init.d/atd
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}/atd
+%attr(755,root,root) %{_sbindir}/atrun
 %attr(4755,root,root) %{_bindir}/at
 %attr(755,root,root) %{_bindir}/atq
 %attr(755,root,root) %{_bindir}/atrm
 %attr(755,root,root) %{_bindir}/batch
-%{_mandir}/man*/*
+%{_mandir}/man1/at.1*
+%{_mandir}/man1/atq.1*
+%{_mandir}/man1/atrm.1*
+%{_mandir}/man1/batch.1*
+%{_mandir}/man5/at_access.5*
+%{_mandir}/man5/at_allow.5*
+%{_mandir}/man5/at_deny.5*
+%{_mandir}/man8/atd.8*
+%{_mandir}/man8/atrun.8*
 %lang(es) %{_mandir}/es/man*/*
 %lang(fi) %{_mandir}/fi/man*/*
 %lang(fr) %{_mandir}/fr/man*/*
