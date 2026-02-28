@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	ş düzenleyici
 Summary(uk.UTF-8):	Утиліти для відкладеного запуску завдань
 Name:		at
 Version:	3.1.8
-Release:	33
+Release:	34
 License:	GPL
 Group:		Daemons
 Source0:	ftp://tsx-11.mit.edu/pub/linux/sources/usr.bin/%{name}-%{version}.tar.gz
