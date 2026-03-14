@@ -12,12 +12,13 @@ Version:	3.2.5
 Release:	1
 License:	GPL
 Group:		Daemons
-Source0:	https://software.calhariz.com/at/at_%{version}.orig.tar.gz
+Source0:	http://software.calhariz.com/at/at_%{version}.orig.tar.gz
 # Source0-md5:	ca3657a1c90d7c3d252e0bc17feddc6e
 Source1:	%{name}d.init
 Source2:	%{name}.sysconfig
 Source3:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source3-md5:	3a35eff8786f0c91cd3193cee9d9a076
+Patch0:		%{name}-no-root-install.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
@@ -78,12 +79,10 @@ at та batch читають команди зі стандартного вво
 запуску інших програм.
 
 %prep
-%setup -q
+%setup -q -a3
+%patch -P0 -p0
 
 %build
-cp -f /usr/share/automake/config.* .
-%{__aclocal}
-%{__autoconf}
 %configure \
 	--with-atspool=/var/spool/at/spool \
 	--with-jobdir=/var/spool/at \
@@ -97,22 +96,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig}
 
 %{__make} install \
-	IROOT=$RPM_BUILD_ROOT
-
-install at.deny $RPM_BUILD_ROOT%{_sysconfdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/atd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/atd
-
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/{atq,atrm,batch}.1
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
-
-echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atq.1
-echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/atrm.1
-echo .so at.1 > $RPM_BUILD_ROOT%{_mandir}/man1/batch.1
-
-echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_deny.5
-echo .so at_allow.5 > $RPM_BUILD_ROOT%{_mandir}/man5/at_access.5
 
 for a in es fi fr hu id it ja ko pl; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/{$a,$a/man{1,5,8}}
@@ -120,6 +107,7 @@ for a in es fi fr hu id it ja ko pl; do
 		install $b $RPM_BUILD_ROOT%{_mandir}/$b
 	done
 done
+
 
 touch $RPM_BUILD_ROOT/var/spool/at/.SEQ
 
@@ -147,16 +135,15 @@ fi
 %attr(755,root,root) %{_sbindir}/atd
 %attr(755,root,root) %{_sbindir}/atrun
 %attr(4755,root,root) %{_bindir}/at
-%attr(755,root,root) %{_bindir}/atq
-%attr(755,root,root) %{_bindir}/atrm
+%{_bindir}/atq
+%{_bindir}/atrm
 %attr(755,root,root) %{_bindir}/batch
 %{_mandir}/man1/at.1*
 %{_mandir}/man1/atq.1*
 %{_mandir}/man1/atrm.1*
 %{_mandir}/man1/batch.1*
-%{_mandir}/man5/at_access.5*
-%{_mandir}/man5/at_allow.5*
-%{_mandir}/man5/at_deny.5*
+%{_mandir}/man5/at.allow.5*
+%{_mandir}/man5/at.deny.5*
 %{_mandir}/man8/atd.8*
 %{_mandir}/man8/atrun.8*
 %lang(es) %{_mandir}/es/man*/*
